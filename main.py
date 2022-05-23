@@ -1,9 +1,11 @@
-import time
+import datetime
 
-today = time.time()
-final = 1659297600
+today = datetime.datetime.now()
+today_epoch = today.timestamp()
+final = datetime.datetime(2022, 8, 1, 0, 0)
+final_epoch = final.timestamp()
 
-difference = int(final-today)
+difference = int(final_epoch-today_epoch)
 
 seconds = difference + 1
 minutes = seconds//60 + 1
