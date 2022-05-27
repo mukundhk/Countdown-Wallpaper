@@ -17,11 +17,13 @@ days = difference//86400 + 1
 weeks = days//7
 rem_days = days%7
 
-text1 = today_text
-text2 = f"""Just {days} days left
+text = f"""{today_text}
+
+Just {days} days left
 {weeks} weeks and {rem_days} days
 for
-{final_text}"""
+{final_text}
+"""
 
 textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
 
@@ -34,9 +36,7 @@ draw = ImageDraw.Draw(image)
 draw.line(((0, 540), (1920, 540)), "gray")
 draw.line(((960, 0), (960, 1080)), "gray")
 
-draw.text((width/2, height/2), text1, font=textfont, anchor="md", align="center")
-
-draw.text((width/2, height/2), text2, font=textfont, anchor="ma", align="center")
+draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont)
 
 image.save("test.png", "PNG")
 
