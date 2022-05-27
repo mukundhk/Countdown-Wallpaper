@@ -1,5 +1,7 @@
 import datetime
-from PIL import Image, ImageFont, ImageDraw 
+from PIL import Image, ImageFont, ImageDraw
+import ctypes
+import os
 
 today = datetime.datetime.now()
 today_epoch = today.timestamp()
@@ -37,3 +39,6 @@ draw.text((width/2, height/2), text1, font=textfont, anchor="md", align="center"
 draw.text((width/2, height/2), text2, font=textfont, anchor="ma", align="center")
 
 image.save("test.png", "PNG")
+
+absolute_path = os.path.abspath("test.png")
+ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
