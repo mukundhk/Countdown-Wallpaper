@@ -32,10 +32,6 @@ image = Image.new("RGBA",(width,height),"black")
 
 draw = ImageDraw.Draw(image)
 
-#grid
-draw.line(((0, 540), (1920, 540)), "gray")
-draw.line(((960, 0), (960, 1080)), "gray")
-
 draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont)
 
 image.save("test.png", "PNG")
