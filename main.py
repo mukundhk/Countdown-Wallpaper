@@ -37,10 +37,10 @@ def create_wallpaper(text):
     textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
     draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont)
 
-    image.save(r"test.png", "PNG")
+    image.save(r".\assets\wallpaper.png", "PNG")
 
 def set_wallpaper():
-    absolute_path = os.path.abspath(r"test.png")
+    absolute_path = os.path.abspath(r".\assets\wallpaper.png")
     ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
 
 if __name__ == "__main__":
