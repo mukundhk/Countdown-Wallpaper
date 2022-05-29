@@ -3,38 +3,49 @@ from PIL import Image, ImageFont, ImageDraw
 import ctypes
 import os
 
-today = datetime.datetime.now()
-today_epoch = today.timestamp()
-today_text = today.strftime("%B %d, %Y")
+def remaining_days():
+    today_epoch = datetime.datetime.now().timestamp()
+    final_epoch = datetime.datetime(2022, 8, 1, 0, 0).timestamp()
 
-final = datetime.datetime(2022, 8, 1, 0, 0)
-final_epoch = final.timestamp()
-final_text = final.strftime("%B %d, %Y")
+    difference = int(final_epoch - today_epoch)
+    days = difference//86400 + 1
+    weeks = days//7
+    rem_days = days%7
 
-difference = int(final_epoch-today_epoch)
+    return (days,weeks,rem_days)
 
-days = difference//86400 + 1
-weeks = days//7
-rem_days = days%7
+def days_to_text():
+    today = datetime.datetime.now().strftime("%B %d, %Y")
+    final = datetime.datetime(2022, 8, 1, 0, 0).strftime("%B %d, %Y")
+    return (today,final)
 
-text = f"""{today_text}
-
-Just {days} days left
-{weeks} weeks and {rem_days} days
+def text(remaining_days,days_text):
+    text = f"""{days_text[0]}
+    
+Just {remaining_days[0]} days left
+{remaining_days[1]} weeks and {remaining_days[2]} days
 for
-{final_text}
+{days_text[1]}
 """
+    return text
 
-textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
+def create_wallpaper(text):
+    width, height = 1920, 1080
+    image = Image.new("RGBA",(width,height),"black")
+    draw = ImageDraw.Draw(image)
 
-width, height = 1920, 1080
-image = Image.new("RGBA",(width,height),"black")
+    textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
+    draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont)
 
-draw = ImageDraw.Draw(image)
+    image.save(r"test.png", "PNG")
 
-draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont)
+def set_wallpaper():
+    absolute_path = os.path.abspath(r"test.png")
+    ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
 
-image.save("test.png", "PNG")
-
-absolute_path = os.path.abspath("test.png")
-ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
+if __name__ == "__main__":
+    remaining_days = remaining_days()
+    days_text = days_to_text()
+    final_text = text(remaining_days, days_text)
+    create_wallpaper(final_text)
+    set_wallpaper()
