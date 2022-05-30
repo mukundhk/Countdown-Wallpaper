@@ -2,10 +2,16 @@ import datetime
 from PIL import Image, ImageFont, ImageDraw
 import ctypes
 import os
+import json
 
 def remaining_days():
+    with open("settings.json","r") as json_file:
+        json_object = json.load(json_file)
+    final_date_elements = json_object["date"].split("-")
+    day,month,year = int(final_date_elements[0]),int(final_date_elements[1]),int(final_date_elements[2])
+    
     today_epoch = datetime.datetime.now().timestamp()
-    final_epoch = datetime.datetime(2022, 8, 1, 0, 0).timestamp()
+    final_epoch = datetime.datetime(year,month,day).timestamp()
 
     difference = int(final_epoch - today_epoch)
     days = difference//86400 + 1
