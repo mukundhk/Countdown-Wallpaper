@@ -3,11 +3,12 @@ from PIL import Image, ImageFont, ImageDraw
 import ctypes
 import os
 import json
+import random
 
 def remaining_days():
-    with open("settings.json","r") as json_file:
-        json_object = json.load(json_file)
-    final_date_elements = json_object["date"].split("-")
+    with open("settings.json","r") as settings_file:
+        settings = json.load(settings_file)
+    final_date_elements = settings["date"].split("-")
     day,month,year = int(final_date_elements[0]),int(final_date_elements[1]),int(final_date_elements[2])
     
     today_epoch = datetime.datetime.now().timestamp()
@@ -35,13 +36,26 @@ for
 """
     return text
 
-def create_wallpaper(text):
+def pick_colors():
+    with open("settings.json","r") as settings_file:
+        settings = json.load(settings_file)
+    theme = settings["theme"]
+    with open(r".\assets\colors.json","r") as colors_file:
+        colors = json.load(colors_file)
+    chosen_colors = random.choice(colors[theme])
+    
+    bg_color = tuple(chosen_colors["background"])
+    text_color = tuple(chosen_colors["text"])
+
+    return (bg_color,text_color)
+    
+def create_wallpaper(chosen_colors,text):
     width, height = 1920, 1080
-    image = Image.new("RGBA",(width,height),"black")
+    image = Image.new("RGBA",(width,height),color=chosen_colors[0])
     draw = ImageDraw.Draw(image)
 
     textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
-    draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont)
+    draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont, fill=chosen_colors[1])
 
     image.save(r".\assets\wallpaper.png", "PNG")
 
@@ -53,5 +67,6 @@ if __name__ == "__main__":
     remaining_days = remaining_days()
     days_text = days_to_text()
     final_text = text(remaining_days, days_text)
-    create_wallpaper(final_text)
+    color_combination = pick_colors()
+    create_wallpaper(color_combination,final_text)
     set_wallpaper()
