@@ -49,13 +49,13 @@ def pick_colors():
 
     return (bg_color,text_color)
     
-def create_wallpaper(chosen_colors,text):
+def create_wallpaper(bg_color,text_color,text):
     width, height = 1920, 1080
-    image = Image.new("RGBA",(width,height),color=chosen_colors[0])
+    image = Image.new("RGBA",(width,height),color=bg_color)
     draw = ImageDraw.Draw(image)
 
     textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
-    draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont, fill=chosen_colors[1])
+    draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont, fill=text_color)
 
     image.save(r".\assets\wallpaper.png", "PNG")
 
@@ -67,6 +67,6 @@ if __name__ == "__main__":
     remaining_days = remaining_days()
     days_text = days_to_text()
     final_text = text(remaining_days, days_text)
-    color_combination = pick_colors()
-    create_wallpaper(color_combination,final_text)
+    bg_color,text_color = pick_colors()
+    create_wallpaper(bg_color,text_color,final_text)
     set_wallpaper()
