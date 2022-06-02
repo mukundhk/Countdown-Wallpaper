@@ -1,55 +1,55 @@
 {
     "light" : [
         {
-            "background" : [194, 222, 209],
-            "text" : [53, 66, 89]
+            "background" : "#C2DED1",
+            "text" : "#354259"
         },
         {
-            "background" : [236, 229, 199],
-            "text" : [53, 66, 89]
+            "background" : "#ECE5C7",
+            "text" : "#354259"
         },
         {
-            "background" : [245, 130, 167],
-            "text" : [24, 10, 10]
+            "background" : "#F582A7",
+            "text" : "#180A0A"
         },
         {
-            "background" : [220, 220, 220],
-            "text" : [57, 62, 70]
+            "background" : "#DCDCDC",
+            "text" : "#393E46"
         },
         {
-            "background" : [255, 200, 200],
-            "text" : [68, 79, 90]
+            "background" : "#FFC8C8",
+            "text" : "#444F5A"
         },
         {
-            "background" : [255, 153, 153],
-            "text" : [62, 65, 73]
+            "background" : "#FF9999",
+            "text" : "#3E4149"
         }
     ],
 
     "dark" : [
         {
-            "background" : [53, 66, 89],
-            "text" : [194, 222, 209]
+            "background" : "#354259",
+            "text" : "#C2DED1"
         },
         {
-            "background" : [53, 66, 89],
-            "text" : [236, 229, 199]
+            "background" : "#354259",
+            "text" : "#ECE5C7"
         },
         {
-            "background" : [24, 10, 10],
-            "text" : [245, 130, 167]
+            "background" : "#180A0A",
+            "text" : "#F582A7"
         },
         {
-            "background" : [57, 62, 70],
-            "text" : [220, 220, 220]
+            "background" : "#393E46",
+            "text" : "#DCDCDC"
         },
         {
-            "background" : [68, 79, 90],
-            "text" : [255, 200, 200]
+            "background" : "#444F5A",
+            "text" : "#FFC8C8"
         },
         {
-            "background" : [62, 65, 73],
-            "text" : [255, 153, 153]
+            "background" : "#3E4149",
+            "text" : "#FF9999"
         }
     ]
 }
