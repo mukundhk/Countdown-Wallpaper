@@ -1,5 +1,5 @@
 import datetime
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, ImageColor
 import ctypes
 import os
 import json
@@ -44,8 +44,8 @@ def pick_colors():
         colors = json.load(colors_file)
     chosen_colors = random.choice(colors[theme])
     
-    bg_color = tuple(chosen_colors["background"])
-    text_color = tuple(chosen_colors["text"])
+    bg_color = ImageColor.getrgb(chosen_colors["background"])
+    text_color = ImageColor.getrgb(chosen_colors["text"])
 
     return (bg_color,text_color)
     
