@@ -50,7 +50,12 @@ def pick_colors():
     return (bg_color,text_color)
     
 def create_wallpaper(bg_color,text_color,text):
-    width, height = 1920, 1080
+    with open("settings.json","r") as settings_file:
+        settings = json.load(settings_file)
+    
+    resolution = settings["resolution"].split("x")
+    width, height = int(resolution[0]), int(resolution[1])
+
     image = Image.new("RGBA",(width,height),color=bg_color)
     draw = ImageDraw.Draw(image)
 
