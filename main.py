@@ -24,11 +24,7 @@ def settings(option):
         return data
 
 def remaining_days():
-    with open("settings.json","r") as settings_file:
-        settings = json.load(settings_file)
-    final_date_elements = settings["date"].split("-")
-    day,month,year = int(final_date_elements[0]),int(final_date_elements[1]),int(final_date_elements[2])
-    
+    day,month,year = settings("date")  
     today_epoch = datetime.datetime.now().timestamp()
     final_epoch = datetime.datetime(year,month,day).timestamp()
 
@@ -40,10 +36,7 @@ def remaining_days():
     return (days,weeks,rem_days)
 
 def days_to_text():
-    with open("settings.json","r") as settings_file:
-        settings = json.load(settings_file)
-    final_date_elements = settings["date"].split("-")
-    day,month,year = int(final_date_elements[0]),int(final_date_elements[1]),int(final_date_elements[2])
+    day,month,year = settings("date")
     today = datetime.datetime.now().strftime("%B %d, %Y")
     final = datetime.datetime(year, month, day).strftime("%B %d, %Y")
     return (today,final)
@@ -59,9 +52,7 @@ for
     return text
 
 def pick_colors():
-    with open("settings.json","r") as settings_file:
-        settings = json.load(settings_file)
-    theme = settings["theme"]
+    theme = settings("theme")
     with open(r".\assets\colors.json","r") as colors_file:
         colors = json.load(colors_file)
     chosen_colors = random.choice(colors[theme])
@@ -72,11 +63,7 @@ def pick_colors():
     return (bg_color,text_color)
     
 def create_wallpaper(bg_color,text_color,text):
-    with open("settings.json","r") as settings_file:
-        settings = json.load(settings_file)
-    
-    resolution = settings["resolution"].split("x")
-    width, height = int(resolution[0]), int(resolution[1])
+    width, height = settings("resolution")
 
     image = Image.new("RGBA",(width,height),color=bg_color)
     draw = ImageDraw.Draw(image)
