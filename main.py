@@ -5,6 +5,24 @@ import os
 import json
 import random
 
+def settings(option):
+    with open("settings.json","r") as settings_file:
+        settings = json.load(settings_file)
+    data = settings[option]
+
+    if option == "date":
+        final_date_elements = data.split("-")
+        day,month,year = int(final_date_elements[0]),int(final_date_elements[1]),int(final_date_elements[2])
+        return (day,month,year)
+
+    if option == "resolution":
+        resolution = data.split("x")
+        width, height = int(resolution[0]), int(resolution[1])
+        return (width, height)
+
+    else:
+        return data
+
 def remaining_days():
     with open("settings.json","r") as settings_file:
         settings = json.load(settings_file)
