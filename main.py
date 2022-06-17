@@ -22,8 +22,12 @@ def remaining_days():
     return (days,weeks,rem_days)
 
 def days_to_text():
+    with open("settings.json","r") as settings_file:
+        settings = json.load(settings_file)
+    final_date_elements = settings["date"].split("-")
+    day,month,year = int(final_date_elements[0]),int(final_date_elements[1]),int(final_date_elements[2])
     today = datetime.datetime.now().strftime("%B %d, %Y")
-    final = datetime.datetime(2022, 8, 1, 0, 0).strftime("%B %d, %Y")
+    final = datetime.datetime(year, month, day).strftime("%B %d, %Y")
     return (today,final)
 
 def text(remaining_days,days_text):
