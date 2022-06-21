@@ -42,8 +42,22 @@ def days_to_text():
     return (today,final)
 
 def text(remaining_days,days_text):
-    text = f"""{days_text[0]}
+    if remaining_days[1] == 0:
+        if remaining_days[0] == 0:
+            text = f"""The wait is finally over.
+
+Today is {days_text[1]}.
+"""
+        else:
+            text = f"""{days_text[0]}
     
+Just {remaining_days[0]} days left
+for
+{days_text[1]}
+"""
+    else:
+        text = f"""{days_text[0]}
+
 Just {remaining_days[0]} days left
 {remaining_days[1]} weeks and {remaining_days[2]} days
 for
