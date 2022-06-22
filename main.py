@@ -8,7 +8,7 @@ import random
 def main():
 
     def settings(option):
-        with open("\generated_assets\settings.json","r") as settings_file:
+        with open(r".\generated_assets\settings.json","r") as settings_file:
             settings = json.load(settings_file)
         data = settings[option]
 
@@ -28,7 +28,11 @@ def main():
     def remaining_days():
         day,month,year = settings("date")  
         today_epoch = datetime.datetime.now().timestamp()
-        final_epoch = datetime.datetime(year,month,day).timestamp()
+        try:
+            final_epoch = datetime.datetime(year,month,day).timestamp()
+        except OSError:
+            year += 2000
+            final_epoch = datetime.datetime(year,month,day).timestamp()
 
         difference = int(final_epoch - today_epoch)
         days = difference//86400 + 1
