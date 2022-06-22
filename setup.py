@@ -11,7 +11,10 @@ theme = input(":- ").lower()
 
 print("Enter monitor resolution:")
 print("Example: 1920x1080")
-resolution = input(":- ").lower()
+print("Leave blank if you want to choose 1920x1080(default)")
+resolution = input(":- ").lower().strip()
+if resolution == "":
+    resolution = "1920x1080"
 
 dictionary = {
     "date" : date,
