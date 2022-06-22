@@ -1,4 +1,2 @@
-assets/wallpaper.png
-settings.json
-/test_folder
 __pycache__
+/generated_assets/
