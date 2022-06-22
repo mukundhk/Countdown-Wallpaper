@@ -8,7 +8,7 @@ import random
 def main():
 
     def settings(option):
-        with open(r".\generated_assets\settings.json","r") as settings_file:
+        with open("\generated_assets\settings.json","r") as settings_file:
             settings = json.load(settings_file)
         data = settings[option]
 
@@ -90,7 +90,7 @@ for
         image.save(r".\generated_assets\generated_wallpaper.png", "PNG")
 
     def set_wallpaper():
-        absolute_path = os.path.abspath(r".\generated_assets\wallpaper.png")
+        absolute_path = os.path.abspath(r".\generated_assets\generated_wallpaper.png")
         ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
 
     remaining_days = remaining_days()
