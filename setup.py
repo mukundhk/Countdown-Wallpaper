@@ -21,7 +21,7 @@ dictionary = {
 
 json_object = json.dumps(dictionary, indent = 4)
 
-with open("settings.json", "w") as json_file:
+with open(r"generated_assets\settings.json", "w") as json_file:
     json_file.write(json_object)
 
 main.main()

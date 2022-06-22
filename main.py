@@ -87,7 +87,7 @@ for
         textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
         draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont, fill=text_color)
 
-        image.save(r".\assets\wallpaper.png", "PNG")
+        image.save(r".\generated_assents\generated_wallpaper.png", "PNG")
 
     def set_wallpaper():
         absolute_path = os.path.abspath(r".\assets\wallpaper.png")
