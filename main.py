@@ -52,6 +52,14 @@ def main():
 
 Today is {days_text[1]}.
 """
+            elif remaining_days[0] == 1:
+                text = f"""{days_text[0]}
+        
+Tomorrow is the big day
+Just a day left
+for
+{days_text[1]}
+"""
             else:
                 text = f"""{days_text[0]}
         
@@ -59,6 +67,7 @@ Just {remaining_days[0]} days left
 for
 {days_text[1]}
 """
+
         else:
             text = f"""{days_text[0]}
 
