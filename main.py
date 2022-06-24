@@ -15,6 +15,8 @@ def main():
         if option == "date":
             final_date_elements = data.split("-")
             day,month,year = int(final_date_elements[0]),int(final_date_elements[1]),int(final_date_elements[2])
+            if year < 1000:
+                year += 2000
             return (day,month,year)
 
         if option == "resolution":
@@ -28,11 +30,7 @@ def main():
     def remaining_days():
         day,month,year = settings("date")  
         today_epoch = datetime.datetime.now().timestamp()
-        try:
-            final_epoch = datetime.datetime(year,month,day).timestamp()
-        except OSError:
-            year += 2000
-            final_epoch = datetime.datetime(year,month,day).timestamp()
+        final_epoch = datetime.datetime(year,month,day).timestamp()
 
         difference = int(final_epoch - today_epoch)
         days = difference//86400 + 1
