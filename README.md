@@ -20,3 +20,6 @@ pip install pillow
 
 ## Feedback
 All kinds of constructive feedback are welcome! Please create a pull request if you have any suggestions.
+
+## License
+This project is licensed under the terms of the GNU General Public License v3.0.
