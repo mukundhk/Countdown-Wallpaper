@@ -1,6 +1,9 @@
 import json
 import main
 
+print("Welcome to Countdown Wallpaper Set up")
+print("Please type in the required information to setup the script")
+
 print("Type the date to count down to:")
 print("Example: 1st August 2022 would be 01-08-2022(with hyphens)")
 date = input(":- ").lower()
