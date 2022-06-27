@@ -6,15 +6,15 @@ import main
 print("Welcome to Countdown Wallpaper Set up")
 print("Please type in the required information to setup the script")
 
-print("Type the date to count down to:")
+print("\nType the date to count down to:")
 print("Example: 1st August 2022 would be 01-08-2022(with hyphens)")
 date = input(":- ").lower()
 
-print("Choose between light and dark themed wallpapers:")
+print("\nChoose between light and dark themed wallpapers:")
 print("Type Light/Dark")
 theme = input(":- ").lower()
 
-print("Enter monitor resolution:")
+print("\nEnter monitor resolution:")
 print("Example: 1920x1080")
 print("Leave blank if you want to choose 1920x1080(default)")
 resolution = input(":- ").lower().strip()
