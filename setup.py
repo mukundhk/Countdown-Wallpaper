@@ -1,4 +1,6 @@
+import os
 import json
+
 import main
 
 print("Welcome to Countdown Wallpaper Set up")
@@ -25,8 +27,11 @@ dictionary = {
     "resolution" : resolution
 }
 
-json_object = json.dumps(dictionary, indent = 4)
+#creating a new directory
+os.mkdir(r".\generated_assets")
 
+#This settings.json will be read by main.py
+json_object = json.dumps(dictionary, indent = 4)
 with open(r".\generated_assets\settings.json", "w") as json_file:
     json_file.write(json_object)
 
