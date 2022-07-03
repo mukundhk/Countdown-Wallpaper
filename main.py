@@ -2,6 +2,7 @@ import datetime
 from PIL import Image, ImageFont, ImageDraw, ImageColor
 import ctypes
 import os
+import win32com.client
 import json
 import random
 
@@ -102,8 +103,18 @@ def set_wallpaper():
     absolute_path = os.path.abspath(r".\generated_assets\generated_wallpaper.png")
     ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
 
+def delete_task():
+    scheduler = win32com.client.Dispatch('Schedule.Service')
+    scheduler.Connect()
+    root_folder = scheduler.GetFolder('\\')
+    root_folder.DeleteTask("Countdown Wallpaper",0)
+
 def main():
     get_remaining_days = remaining_days()
+    if get_remaining_days[0] < 0:
+        delete_task()
+        exit()
+
     days_text = days_to_text()
     final_text = text(get_remaining_days, days_text)
     bg_color,text_color = pick_colors()
