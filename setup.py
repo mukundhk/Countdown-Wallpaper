@@ -15,7 +15,7 @@ def input_prompts():
     print("Please type in the required information to setup the script")
 
     print("\nType the date to count down to:")
-    print("Example: 1st August 2022 would be 01-08-2022(with hyphens)")
+    print("Example: 1st August 2022 would be 2022-08-01(with hyphens)")
     date = input(":- ").lower()
 
     print("\nChoose between light and dark themed wallpapers:")
