@@ -1,4 +1,3 @@
-import datetime
 import win32com.client
 
 def create_task(python_path, working_dir):
@@ -7,12 +6,12 @@ def create_task(python_path, working_dir):
     root_folder = scheduler.GetFolder('\\')
     task_def = scheduler.NewTask(0)
 
-    # Defining the Start time of job
-    start_time = datetime.datetime(2022, 7, 3)
+    triggers = task_def.Triggers
+    start_time = "2022-07-04T00:00:00"
 
-    # For Daily Trigger set this variable to 2 ; for One time run set this value as 1
-    TASK_TRIGGER_DAILY = 2
-    trigger = task_def.Triggers.Create(TASK_TRIGGER_DAILY)
+    TriggerTypeDaily = 2
+    trigger = triggers.Create(TriggerTypeDaily)
+    trigger.StartBoundary = start_time
 
     trigger.StartBoundary = start_time.isoformat()
 
