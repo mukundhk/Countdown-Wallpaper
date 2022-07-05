@@ -52,4 +52,5 @@ if __name__ == "__main__":
     date,theme,resolution = input_prompts()
     create_json(date,theme,resolution)
     python_path, working_dir = get_paths()
-    scheduler.create_task(python_path, working_dir)
+    username = os.getlogin()
+    scheduler.create_task(python_path, working_dir, username)
