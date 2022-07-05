@@ -1,6 +1,6 @@
 import win32com.client
 
-def create_task(python_path, working_dir):
+def create_task(python_path, working_dir, username):
     scheduler = win32com.client.Dispatch('Schedule.Service')
     scheduler.Connect()
     root_folder = scheduler.GetFolder('\\')
@@ -18,11 +18,11 @@ def create_task(python_path, working_dir):
     trigger.StartBoundary = start_time
     trigger.Id = "RegistrationTriggerId"
     
-    # DOESNT WORK. ERROR - ACCESS DENIED
-    # TriggerTypeLogon = 9
-    # trigger = triggers.Create(TriggerTypeLogon)
-    # trigger.StartBoundary = start_time
-    # trigger.Id = "LogonTriggerId"
+    TriggerTypeLogon = 9
+    trigger = triggers.Create(TriggerTypeLogon)
+    trigger.StartBoundary = start_time
+    trigger.Id = "LogonTriggerId"
+    trigger.UserId = username
 
     # Create action
     TASK_ACTION_EXEC = 0
