@@ -23,4 +23,4 @@ pip install pillow pywin32
 All kinds of constructive feedback are welcome! Please create a pull request if you have any suggestions.
 
 ## License
-This project is licensed under the terms of the GNU General Public License v3.0.
+This project is licensed under the terms of the [GNU General Public License v3.0](https://github.com/mukundhk/Countdown-Wallpaper/blob/master/LICENSE.md).
