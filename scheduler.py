@@ -32,8 +32,11 @@ def create_task(python_path, working_dir, username):
     action.WorkingDirectory = working_dir
     action.Arguments ='main.py'
 
-    # Set parameters
+    # Registration information
     task_def.RegistrationInfo.Description = 'A recurring daily task that runs the program at midnight. Check https://github.com/mukundhk/Countdown-Wallpaper for more information.'
+    task_def.RegistrationInfo.Author = 'Mukund Harikumar'
+
+    # Task Settings
     task_def.Settings.Enabled = True
     task_def.Settings.StopIfGoingOnBatteries = False
     task_def.Settings.DisallowStartIfOnBatteries = False
