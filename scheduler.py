@@ -13,7 +13,16 @@ def create_task(python_path, working_dir):
     trigger = triggers.Create(TriggerTypeDaily)
     trigger.StartBoundary = start_time
 
-    trigger.StartBoundary = start_time.isoformat()
+    TriggerTypeRegistration = 7
+    trigger = triggers.Create(TriggerTypeRegistration)
+    trigger.StartBoundary = start_time
+    trigger.Id = "RegistrationTriggerId"
+    
+    # DOESNT WORK. ERROR - ACCESS DENIED
+    # TriggerTypeLogon = 9
+    # trigger = triggers.Create(TriggerTypeLogon)
+    # trigger.StartBoundary = start_time
+    # trigger.Id = "LogonTriggerId"
 
     # Create action
     TASK_ACTION_EXEC = 0
