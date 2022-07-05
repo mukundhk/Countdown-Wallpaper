@@ -13,7 +13,7 @@ def settings(option):
 
     if option == "date":
         final_date_elements = data.split("-")
-        day,month,year = int(final_date_elements[2]),int(final_date_elements[1]),int(final_date_elements[1])
+        day,month,year = int(final_date_elements[2]),int(final_date_elements[1]),int(final_date_elements[0])
         if year < 1000:
             year += 2000
         return (day,month,year)
