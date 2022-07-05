@@ -12,7 +12,7 @@ def create_task(python_path, working_dir):
     TriggerTypeDaily = 2
     trigger = triggers.Create(TriggerTypeDaily)
     trigger.StartBoundary = start_time
-
+    
     TriggerTypeRegistration = 7
     trigger = triggers.Create(TriggerTypeRegistration)
     trigger.StartBoundary = start_time
@@ -37,6 +37,7 @@ def create_task(python_path, working_dir):
     task_def.Settings.Enabled = True
     task_def.Settings.StopIfGoingOnBatteries = False
     task_def.Settings.DisallowStartIfOnBatteries = False
+    task_def.settings.StartWhenAvailable = True
     TASK_INSTANCES_STOP_EXISTING = 3 
     task_def.Settings.MultipleInstances = TASK_INSTANCES_STOP_EXISTING
 
