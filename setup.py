@@ -2,7 +2,6 @@ import os
 import sys
 import json
 
-import main
 import scheduler
 
 def get_paths():
@@ -54,4 +53,3 @@ if __name__ == "__main__":
     create_json(date,theme,resolution)
     python_path, working_dir = get_paths()
     scheduler.create_task(python_path, working_dir)
-    main.main()
