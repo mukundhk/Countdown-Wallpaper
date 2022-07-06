@@ -15,11 +15,11 @@ def input_prompts():
 
     print("\nType the date to count down to:")
     print("Example: 1st August 2022 would be 2022-08-01(with hyphens)")
-    date = input(":- ").lower()
+    date = input(":- ").lower().strip()
 
     print("\nChoose between light and dark themed wallpapers:")
     print("Type Light/Dark")
-    theme = input(":- ").lower()
+    theme = input(":- ").lower().strip()
 
     print("\nEnter monitor resolution:")
     print("Example: 1920x1080")
