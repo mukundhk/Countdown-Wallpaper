@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import ctypes
 
 import scheduler
 
@@ -20,21 +21,20 @@ def input_prompts():
     print("\nChoose between light and dark themed wallpapers:")
     print("Type Light/Dark")
     theme = input(":- ").lower().strip()
-
-    print("\nEnter monitor resolution:")
-    print("Example: 1920x1080")
-    print("Leave blank if you want to choose 1920x1080(default)")
-    resolution = input(":- ").lower().strip()
-    if resolution == "":
-        resolution = "1920x1080"
     
-    return date,theme,resolution
+    return date,theme
 
-def create_json(date, theme, resolution):
+def get_resolution():
+    user32 = ctypes.windll.user32
+    user32.SetProcessDPIAware()
+    resolution = (user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)) # (W,H)
+    return resolution
+
+def create_json(date, theme):
     dictionary = {
         "date" : date,
         "theme" : theme,
-        "resolution" : resolution
+        "resolution" : get_resolution()
     }
 
     #creating a new directory
@@ -49,8 +49,8 @@ def create_json(date, theme, resolution):
         json_file.write(json_object)
 
 if __name__ == "__main__":
-    date,theme,resolution = input_prompts()
-    create_json(date,theme,resolution)
+    date,theme = input_prompts()
+    create_json(date,theme)
     python_path, working_dir = get_paths()
     username = os.getlogin()
     scheduler.create_task(python_path, working_dir, username)
