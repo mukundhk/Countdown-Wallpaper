@@ -19,8 +19,7 @@ def settings(option):
         return (day,month,year)
 
     if option == "resolution":
-        resolution = data.split("x")
-        width, height = int(resolution[0]), int(resolution[1])
+        width, height = data[0], data[1]
         return (width, height)
 
     else:
