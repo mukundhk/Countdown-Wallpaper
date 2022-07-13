@@ -1,6 +1,6 @@
 import datetime
 from PIL import Image, ImageFont, ImageDraw, ImageColor
-import ctypes
+from ctypes import windll
 import os
 import win32com.client
 import json
@@ -100,7 +100,7 @@ def create_wallpaper(bg_color,text_color,text):
 
 def set_wallpaper():
     absolute_path = os.path.abspath(r".\generated_assets\generated_wallpaper.png")
-    ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
+    windll.user32.SystemParametersInfoW(20, 0, absolute_path , 0)
 
 def delete_task():
     scheduler = win32com.client.Dispatch('Schedule.Service')

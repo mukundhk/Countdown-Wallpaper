@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-import ctypes
+from ctypes import windll
 
 import scheduler
 
@@ -25,7 +25,7 @@ def input_prompts():
     return date,theme
 
 def get_resolution():
-    user32 = ctypes.windll.user32
+    user32 = windll.user32
     user32.SetProcessDPIAware()
     resolution = (user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)) # (W,H)
     return resolution
