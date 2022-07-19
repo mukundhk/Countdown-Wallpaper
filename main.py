@@ -6,27 +6,12 @@ import win32com.client
 import json
 import random
 
-def settings(option):
+def get_settings():
     with open(r".\generated_assets\settings.json","r") as settings_file:
         settings = json.load(settings_file)
-    data = settings[option]
+    return settings
 
-    if option == "date":
-        final_date_elements = data.split("-")
-        day,month,year = int(final_date_elements[2]),int(final_date_elements[1]),int(final_date_elements[0])
-        if year < 1000:
-            year += 2000
-        return (day,month,year)
-
-    if option == "resolution":
-        width, height = data[0], data[1]
-        return (width, height)
-
-    else:
-        return data
-
-def remaining_days():
-    day,month,year = settings("date")  
+def get_remaining_days(year,month,day):
     today_epoch = datetime.datetime.now().timestamp()
     final_epoch = datetime.datetime(year,month,day).timestamp()
 
@@ -37,8 +22,7 @@ def remaining_days():
 
     return (days,weeks,rem_days)
 
-def days_to_text():
-    day,month,year = settings("date")
+def days_to_text(year,month,day):
     today = datetime.datetime.now().strftime("%B %d, %Y")
     final = datetime.datetime(year, month, day).strftime("%B %d, %Y")
     return (today,final)
@@ -76,8 +60,7 @@ for
 """
     return text
 
-def pick_colors():
-    theme = settings("theme")
+def pick_colors(theme):
     with open(r".\assets\colors.json","r") as colors_file:
         colors = json.load(colors_file)
     chosen_colors = random.choice(colors[theme])
@@ -87,8 +70,8 @@ def pick_colors():
 
     return (bg_color,text_color)
     
-def create_wallpaper(bg_color,text_color,text):
-    width, height = settings("resolution")
+def create_wallpaper(bg_color,text_color,text,resolution):
+    width, height = resolution[0], resolution[1]
 
     image = Image.new("RGBA",(width,height),color=bg_color)
     draw = ImageDraw.Draw(image)
@@ -109,15 +92,19 @@ def delete_task():
     root_folder.DeleteTask("Countdown Wallpaper",0)
 
 def main():
-    get_remaining_days = remaining_days()
-    if get_remaining_days[0] < 0:
+    settings = get_settings()
+
+    year,month,day = settings["date"]
+    remaining_days = get_remaining_days(year,month,day)
+    if remaining_days[0] < 0:
         delete_task()
         exit()
 
-    days_text = days_to_text()
-    final_text = text(get_remaining_days, days_text)
-    bg_color,text_color = pick_colors()
-    create_wallpaper(bg_color,text_color,final_text)
+    
+    days_text = days_to_text(year,month,day)
+    final_text = text(remaining_days, days_text)
+    bg_color,text_color = pick_colors(settings["theme"])
+    create_wallpaper(bg_color,text_color,final_text,settings["resolution"])
     set_wallpaper()
 
 if __name__ == "__main__":
