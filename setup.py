@@ -16,13 +16,16 @@ def input_prompts():
 
     print("\nType the date to count down to:")
     print("Example: 1st August 2022 would be 2022-08-01(with hyphens)")
-    date = input(":- ").lower().strip()
+    date = input(":- ").lower().strip().split("-")
+    date_elements = list(map(int, date)) # CHANGES THE TYPE OF LIST ELEMENTS FROM STR TO INT
+    if date_elements[0] < 1000:
+            date_elements[0] += 2000 # CONVERTS YY TO YYYY FORMAT
 
     print("\nChoose between light and dark themed wallpapers:")
     print("Type Light/Dark")
     theme = input(":- ").lower().strip()
     
-    return date,theme
+    return date_elements,theme
 
 def get_resolution():
     user32 = windll.user32
