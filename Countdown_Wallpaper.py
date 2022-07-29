@@ -175,7 +175,7 @@ def create_wallpaper(bg_color,text_color,text,resolution):
     image = Image.new("RGBA",(width,height),color=bg_color)
     draw = ImageDraw.Draw(image)
 
-    textfont = ImageFont.truetype("assets\\Nunito-VariableFont_wght.ttf", 50)
+    textfont = ImageFont.truetype(font = "calibril.ttf", size = 50)
     draw.text((width/2,height/2), text, align="center", anchor="mm", font=textfont, fill=text_color)
 
     image.save(r".\generated_assets\generated_wallpaper.png", "PNG")
