@@ -51,9 +51,12 @@ def create_json(date, theme):
     with open(r".\generated_assets\settings.json", "w") as json_file:
         json_file.write(json_object)
 
-if __name__ == "__main__":
+def main():
     date,theme = input_prompts()
     create_json(date,theme)
     python_path, working_dir = get_paths()
     username = os.getlogin()
     scheduler.create_task(python_path, working_dir, username)
+
+if __name__ == "__main__":
+    main()
