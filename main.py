@@ -6,6 +6,8 @@ import win32com.client
 import json
 import random
 
+import setup
+
 def get_settings():
     with open(r".\generated_assets\settings.json","r") as settings_file:
         settings = json.load(settings_file)
@@ -108,4 +110,7 @@ def main():
     set_wallpaper()
 
 if __name__ == "__main__":
+    if not os.path.exists(r'generated_assets\settings.json'):
+        setup.main()
+
     main()
