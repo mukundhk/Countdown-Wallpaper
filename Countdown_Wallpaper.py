@@ -160,12 +160,12 @@ for
     return text
 
 def pick_colors(theme):
-    with open(r".\assets\colors.json","r") as colors_file:
-        colors = json.load(colors_file)
-    chosen_colors = random.choice(colors[theme])
-    
-    bg_color = ImageColor.getrgb(chosen_colors["background"])
-    text_color = ImageColor.getrgb(chosen_colors["text"])
+    color_combinations = ( ("#C2DED1","#354259"), ("#ECE5C7","#354259"), ("#F582A7","#180A0A"), ("#DCDCDC","#393E46"), ("#FFC8C8","#444F5A"), ("#FF9999","3E4149") )
+    chosen_colors = random.choice(color_combinations)
+    if theme=="dark":
+        chosen_colors = chosen_colors[::-1]
+    bg_color = ImageColor.getrgb(chosen_colors[0])
+    text_color = ImageColor.getrgb(chosen_colors[1])
 
     return (bg_color,text_color)
     
