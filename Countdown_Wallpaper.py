@@ -209,7 +209,8 @@ def run():
 if __name__ == "__main__":
     cmd_args = sys.argv
 
-    if len(cmd_args) == 1:
+    # RUN SETUP IF NO CMD ARGUEMENTS ARE PASSED OR SETTINGS FILE DOESNT EXIST 
+    if (len(cmd_args) == 1) or (not os.path.exists(r'generated_assets\settings.json')):
         date,theme = input_prompts()
         create_json(date,theme)
         create_task()
