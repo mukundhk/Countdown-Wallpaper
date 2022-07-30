@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-from ctypes import windll
+from ctypes import windll,create_unicode_buffer
 
 import scheduler
 
@@ -51,9 +51,17 @@ def create_json(date, theme):
     with open(r".\generated_assets\settings.json", "w") as json_file:
         json_file.write(json_object)
 
+def old_wallpaper():
+    ubuf = create_unicode_buffer(512)
+    windll.user32.SystemParametersInfoW(115,len(ubuf),ubuf,0)
+    old_path = ubuf.value 
+    new_path = os.path.abspath(r".\generated_assets\old_wallpaper.png")
+    os.system(f"copy {old_path} {new_path}")
+
 def main():
     date,theme = input_prompts()
     create_json(date,theme)
+    old_wallpaper()
     python_path, working_dir = get_paths()
     username = os.getlogin()
     scheduler.create_task(python_path, working_dir, username)
