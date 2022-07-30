@@ -3,6 +3,7 @@ from PIL import Image, ImageFont, ImageDraw, ImageColor
 from ctypes import windll, create_unicode_buffer
 import os
 import sys
+import shutil
 import win32com.client
 import json
 import random
@@ -207,6 +208,7 @@ def run():
         old_wallpaper_path = os.path.abspath(r".\generated_assets\old_wallpaper.png")
         if os.path.exists(old_wallpaper_path):
             windll.user32.SystemParametersInfoW(20, 0, old_wallpaper_path , 0)
+        shutil.rmtree(r".\generated_assets", ignore_errors=True)
         exit()
 
     days_text = days_to_text(year,month,day)

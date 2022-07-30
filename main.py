@@ -5,6 +5,7 @@ import os
 import win32com.client
 import json
 import random
+import shutil
 
 import setup
 
@@ -103,6 +104,7 @@ def main():
         old_wallpaper_path = os.path.abspath(r".\generated_assets\old_wallpaper.png")
         if os.path.exists(old_wallpaper_path):
             windll.user32.SystemParametersInfoW(20, 0, old_wallpaper_path , 0)
+        shutil.rmtree(r".\generated_assets", ignore_errors=True)
         exit()
 
     
