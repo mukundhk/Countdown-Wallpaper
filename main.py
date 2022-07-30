@@ -100,6 +100,9 @@ def main():
     remaining_days = get_remaining_days(year,month,day)
     if remaining_days[0] < 0:
         delete_task()
+        old_wallpaper_path = os.path.abspath(r".\generated_assets\old_wallpaper.png")
+        if os.path.exists(old_wallpaper_path):
+            windll.user32.SystemParametersInfoW(20, 0, old_wallpaper_path , 0)
         exit()
 
     
