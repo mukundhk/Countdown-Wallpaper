@@ -168,7 +168,7 @@ for
     return text
 
 def pick_colors(theme):
-    color_combinations = ( ("#C2DED1","#354259"), ("#ECE5C7","#354259"), ("#F582A7","#180A0A"), ("#DCDCDC","#393E46"), ("#FFC8C8","#444F5A"), ("#FF9999","3E4149") )
+    color_combinations = ( ("#C2DED1","#354259"), ("#ECE5C7","#354259"), ("#F582A7","#180A0A"), ("#DCDCDC","#393E46"), ("#FFC8C8","#444F5A"), ("#FF9999","#3E4149") )
     chosen_colors = random.choice(color_combinations)
     if theme=="dark":
         chosen_colors = chosen_colors[::-1]
