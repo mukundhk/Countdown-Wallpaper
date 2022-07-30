@@ -1,6 +1,6 @@
 import datetime
 from PIL import Image, ImageFont, ImageDraw, ImageColor
-from ctypes import windll
+from ctypes import windll, create_unicode_buffer
 import os
 import sys
 import win32com.client
@@ -52,6 +52,13 @@ def create_json(date, theme):
     json_object = json.dumps(dictionary, indent = 4)
     with open(r".\generated_assets\settings.json", "w") as json_file:
         json_file.write(json_object)
+
+def old_wallpaper():
+    ubuf = create_unicode_buffer(512)
+    windll.user32.SystemParametersInfoW(115,len(ubuf),ubuf,0)
+    old_path = ubuf.value 
+    new_path = os.path.abspath(r".\generated_assets\old_wallpaper.png")
+    os.system(f"copy {old_path} {new_path}")
 
 def create_task():
     scheduler = win32com.client.Dispatch('Schedule.Service')
@@ -197,9 +204,11 @@ def run():
     remaining_days = get_remaining_days(year,month,day)
     if remaining_days[0] < 0:
         delete_task()
+        old_wallpaper_path = os.path.abspath(r".\generated_assets\old_wallpaper.png")
+        if os.path.exists(old_wallpaper_path):
+            windll.user32.SystemParametersInfoW(20, 0, old_wallpaper_path , 0)
         exit()
 
-    
     days_text = days_to_text(year,month,day)
     final_text = text(remaining_days, days_text)
     bg_color,text_color = pick_colors(settings["theme"])
@@ -213,6 +222,9 @@ if __name__ == "__main__":
     if (len(cmd_args) == 1) or (not os.path.exists(r'generated_assets\settings.json')):
         date,theme = input_prompts()
         create_json(date,theme)
+        
+        old_wallpaper()
+
         create_task()
 
     elif cmd_args[1] == "run":
