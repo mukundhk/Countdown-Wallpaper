@@ -21,6 +21,11 @@ pip install -r requirements.txt
 >**Note** 
 > If you delete generated_assets folder, it will ask you to enter the settings again.
 
+## Examples of Randomly Generated Wallpapers
+![light mode wallpaper]( ./imgs/light_mode_wallpaper.png "light mode wallpaper")
+
+![dark mode wallpaper]( ./imgs/dark_mode_wallpaper.png "dark mode wallpaper")
+
 ## Feedback
 All kinds of constructive feedback are welcome! Please create a pull request if you have any suggestions.
 
