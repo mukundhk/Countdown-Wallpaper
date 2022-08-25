@@ -9,6 +9,7 @@ import json
 import random
 
 def get_settings():
+    # settings.json is the file with user's preferences
     with open(r".\generated_assets\settings.json","r") as settings_file:
         settings = json.load(settings_file)
     return settings
@@ -20,6 +21,7 @@ def input_prompts():
     print("\nType the date to count down to:")
     print("Example: 1st August 2022 would be 2022-08-01(with hyphens)")
     date = input(":- ").lower().strip().split("-")
+    
     date_elements = list(map(int, date)) # CHANGES THE TYPE OF LIST ELEMENTS FROM STR TO INT
     if date_elements[0] < 1000:
             date_elements[0] += 2000 # CONVERTS YY TO YYYY FORMAT
