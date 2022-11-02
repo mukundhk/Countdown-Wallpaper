@@ -207,9 +207,11 @@ def run():
     remaining_days = get_remaining_days(year,month,day)
     if remaining_days[0] < 0:
         delete_task()
+        # RESTORE OLD WALLPAPER
         old_wallpaper_path = os.path.abspath(r".\generated_assets\old_wallpaper.png")
         if os.path.exists(old_wallpaper_path):
             windll.user32.SystemParametersInfoW(20, 0, old_wallpaper_path , 0)
+        # DELETE ALL GENERATED WALLPAPERS AND JSON FILES
         shutil.rmtree(r".\generated_assets", ignore_errors=True)
         exit()
 
@@ -222,7 +224,7 @@ def run():
 if __name__ == "__main__":
     cmd_args = sys.argv
 
-    # RUN SETUP IF NO CMD ARGUEMENTS ARE PASSED OR SETTINGS FILE DOESNT EXIST 
+    # RUN SETUP IF NO CMD ARGUMENTS ARE PASSED OR SETTINGS FILE DOESNT EXIST 
     if (len(cmd_args) == 1) or (not os.path.exists(r'generated_assets\settings.json')):
         date,theme = input_prompts()
         create_json(date,theme)
